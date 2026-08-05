@@ -1,29 +1,11 @@
 services:
   vaultwarden:
-    image: vaultwarden/server:1.32.0
+    image: vaultwarden/server:latest
     container_name: vaultwarden
     restart: unless-stopped
     environment:
       DOMAIN: "https://vault.powerupsolutions.lk"
-      WEBSOCKET_ENABLED: "true"
-      SIGNUPS_ALLOWED: "true"
-      ADMIN_TOKEN: "${ADMIN_TOKEN}"
-      SMTP_HOST: "${SMTP_HOST}"
-      SMTP_FROM: "${SMTP_FROM}"
-      SMTP_PORT: "${SMTP_PORT}"
-      SMTP_SECURITY: "${SMTP_SECURITY}"
-      SMTP_USERNAME: "${SMTP_USERNAME}"
-      SMTP_PASSWORD: "${SMTP_PASSWORD}"
     volumes:
-      - vaultwarden_data:/data/
+      - ./vw-data/:/data/
     ports:
       - 127.0.0.1:90:80
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.vaultwarden.rule=Host(`vault.powerupsolutions.lk`)"
-      - "traefik.http.routers.vaultwarden.entrypoints=websecure"
-      - "traefik.http.routers.vaultwarden.tls.certResolver=letsencrypt"
-      - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
-
-volumes:
-  vaultwarden_data:
