@@ -8,8 +8,6 @@ services:
       ADMIN_TOKEN: ${ADMIN_TOKEN}
     volumes:
       - vaultwarden:/data
-    expose:
-      - 80
-
+  
 volumes:
   vaultwarden:
