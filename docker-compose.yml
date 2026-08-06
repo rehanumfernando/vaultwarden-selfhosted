@@ -9,7 +9,7 @@ services:
     volumes:
       - vaultwarden:/data
     expose:
-      - 3000
+      - 80
 
 volumes:
   vaultwarden:
